@@ -137,4 +137,26 @@ const signUp = async (req, res) => {
     }
 }
 
-export { login, logout, signUp };
+const checkAuth = async (req, res) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized"
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            user
+        })
+    } catch (error) {
+        console.log("Error in signup controller", error.message);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
+
+export { login, logout, signUp, checkAuth };

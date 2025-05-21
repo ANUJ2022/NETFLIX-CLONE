@@ -1,13 +1,29 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginThunk } from '../features/auth/authThunk';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = (e) => {
+
+    const dispatch = useDispatch();
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        console.log(email + " "  + " " + password);
+        const userData = {
+            email,
+            password
+        }
+        try {
+            const result = await dispatch(loginThunk(userData)).unwrap();
+            toast.success("Login Successfull");
+        } catch (err) {
+            toast.error(err);
+        }
     }
 
     return (
@@ -22,7 +38,7 @@ const Login = () => {
             <div className='flex justify-center items-center mt-20 mx-3'>
                 <div className='w-full max-w-md p-8 space-y-6 bg-black/60 rounded-lg shadow-md'>
                     <h1 className='text-center text-white text-2xl font-bold mb-4'>
-                        Sign Up
+                        Login
                     </h1>
                     <form className='space-y-4' onSubmit={handleLogin}>
                         <div>

@@ -7,7 +7,7 @@ const Footer = () => {
                 <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
                     Built by{" "}
                     <a
-                        href="https://github.com/burakorkmez"
+                        href="https://github.com/ANUJ2022"
                         target='_blank'
                         className='font-medium underline underline-offset-4'
                     >
@@ -15,7 +15,7 @@ const Footer = () => {
                     </a>
                     . The source code is availaible on {" "}
                     <a
-                        href="https://github.com/burakorkmez"
+                        href="https://github.com/ANUJ2022/NETFLIX-CLONE"
                         target='_blank'
                         rel='noreferrer'
                         className='font-medium underline underline-offset-4'

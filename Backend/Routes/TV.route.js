@@ -7,7 +7,7 @@ const tvRouter = express.Router();
 tvRouter.get("/trending", getTrendingTVShow);
 tvRouter.get("/:id/trailers", getTVShowsTrailer);
 tvRouter.get("/:id/TVDetails", getTVShowDetails);
-tvRouter.get("/:id/similarTVShows", getSimilarTVShows);
+tvRouter.get("/:id/similar", getSimilarTVShows);
 tvRouter.get("/:category", getTVShowsByCategory);
 
 

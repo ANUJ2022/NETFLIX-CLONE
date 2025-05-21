@@ -1,15 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { signUpThunk } from "../features/auth/authThunk";
+import { Link, useSearchParams } from "react-router-dom";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
+
+  const dispatch = useDispatch();
+  const [searchParam] = useSearchParams();
+  const userEmail = searchParam.get("email");
+  const [email, setEmail] = useState(userEmail || "");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
 
-  const handleSignup = (e) => {
+
+  const handleSignup = async (e) => {
     e.preventDefault();
-    console.log(email + " " + username + " " + password);
+
+    const userData = {
+      username,
+      email,
+      password,
+    };
+
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const result = await dispatch(signUpThunk(userData)).unwrap();
+      toast.success("Signup successful!");
+      
+
+    } catch (err) {
+      toast.error(err); // shows "All fields required", etc.
+    }
   }
+
   return (
     <div className='h-screen w-full hero-bg'>
 

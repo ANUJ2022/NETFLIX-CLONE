@@ -1,7 +1,7 @@
 import express from "express";
 import { getSearchHistory, removeItemFromSearchHistory, saveSelectedToHistory, searchMovie, searchPerson, searchTV } from "../Controller/search.Controller.js";
 
-const searchRouter = express();
+const searchRouter = express.Router();
 
 searchRouter.get("/person/:query", searchPerson);
 searchRouter.get("/tv/:query", searchTV);
